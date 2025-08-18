@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Галерея иллюстраций — стиль и анимация</title>
+    <link rel="stylesheet" href="styles.css">
+   <script src="scripts.js" defer></script>
+</head>
+<body tabindex="0">
+
+  <!-- Плавающие иконки книг -->
+  <div id="backgroundWrapper" aria-hidden="true" class="background-wrapper"></div>
+
+  <!-- Плавающие иконки кисточек, книг и палитр -->
+  <div id="artToolsWrapper" aria-hidden="true"></div>
+
+  <!-- Навигация -->
+  <header role="navigation" aria-label="Навигация по сайту">
+    <button class="active" data-target="home" aria-current="page" type="button">Главная</button>
+    <button data-target="page1" type="button">Такая долгая жизнь</button>
+    <button data-target="page2" type="button">Астрид</button>
+    <button data-target="page3" type="button">Приговор обоснованию не подлежит</button>
+    <button data-target="page4" type="button">Одна</button>
+    <button data-target="page5" type="button">Последний день</button>
+    <button data-target="page6" type="button">Березовый сок</button>
+    <button data-target="page7" type="button">Великой победе посвещается</button>
+    <button data-target="page8" type="button">Кто приедет на Мариине</button>
+  </header>
+
+  <main>
+    <!-- Главная страница -->
+    <section id="home" class="page active" aria-label="Главная страница" tabindex="0">
+      <img src="bnd.jpg.jpg" alt="Обложка книги" />
+      <p>
+        Добро пожаловать на современный сайт библиотеки иллюстраций!<br/>
+        Здесь вы найдёте аккуратно расположенные изображения в виде лесенки с красивыми рамками, на фоне — мраморный рисунок с живой анимацией.<br/>
+        Навигация удобна и понятна, иллюстрации в модальном окне показываются крупно с подробным описанием.<br/>
+        Наслаждайтесь стильным дизайном и плавными анимациями. 
+      </p>
+    </section>
+
+    <!-- Страницы для иллюстраций -->
+    <section id="page1" class="page" aria-label="Иллюстрации - страница 1" tabindex="0"></section>
+    <section id="page2" class="page" aria-label="Иллюстрации - страница 2" tabindex="0"></section>
+    <section id="page3" class="page" aria-label="Иллюстрации - страница 3" tabindex="0"></section>
+    <section id="page4" class="page" aria-label="Иллюстрации - страница 4" tabindex="0"></section>
+    <section id="page5" class="page" aria-label="Иллюстрации - страница 5" tabindex="0"></section>
+    <section id="page6" class="page" aria-label="Иллюстрации - страница 6" tabindex="0"></section>
+    <section id="page7" class="page" aria-label="Иллюстрации - страница 7" tabindex="0"></section>
+    <section id="page8" class="page" aria-label="Иллюстрации - страница 8" tabindex="0"></section>
+  </main>
+
+  <!-- Модальное окно -->
+  <aside id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalDesc">
+    <div class="modal-content">
+      <button id="modalClose" class="modal-close" aria-label="Закрыть модальное окно" type="button">&times;</button>
+      <img id="modalImg" src="" alt="Увеличенное изображение иллюстрации" />
+      <div id="modalDesc" class="description"></div>
+    </div>
+  </aside>
+
+  <div class="illustration-texts">
+    <div class="illustration-desc">Обычное описание</div>
+    <div class="illustration-extra">Дополнительный текст рядом</div>
+  </div>
+
+  
+</body>
+</html>
