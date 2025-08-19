@@ -1,0 +1,263 @@
+// ====== JS: Анимация плавания книг на фоне =======
+const backgroundWrapper = document.getElementById('backgroundWrapper');
+const NUM_BOOKS = 16;
+
+function createFloatingBook() {
+  const book = document.createElement('div');
+  book.className = 'floating-book';
+  book.style.left = (Math.random() * 100) + 'vw';
+  book.style.top = (100 + Math.random() * 60) + 'vh';
+  const size = 28 + Math.random() * 25;
+  book.style.width = size + 'px';
+  book.style.height = (size * 0.66).toFixed(2) + 'px';
+  const duration = 22 + Math.random() * 15;
+  const delay = -(duration * Math.random());
+  book.style.animationDuration = duration + 's';
+  book.style.animationDelay = delay + 's';
+
+  backgroundWrapper.appendChild(book);
+
+  book.addEventListener('animationiteration', () => {
+    book.style.left = (Math.random() * 100) + 'vw';
+    book.style.top = (100 + Math.random() * 60) + 'vh';
+    book.style.animationDuration = (22 + Math.random() * 15) + 's';
+    book.style.animationDelay = '0s';
+  });
+  return book;
+}
+
+for(let i=0; i < NUM_BOOKS; i++){
+  createFloatingBook();
+}
+
+// ====== JS: Анимация художественных иконок кисточек, книг и красок =======
+const artToolsWrapper = document.getElementById('artToolsWrapper');
+
+const icons = [
+  // замените локальные пути на веб-доступные или относительные пути к вашим иконкам
+  'file:///C:/Users/ПК-МБО/Downloads/кисть.png', // кисточка
+  'file:///C:/Users/ПК-МБО/Downloads/book_13464366.png', // книга
+  'file:///C:/Users/ПК-МБО/Downloads/color-palette_17268000.png'  // палитра красок
+];
+
+const NUM_ICONS = 20;
+
+function createArtToolIcon() {
+  const icon = document.createElement('div');
+  icon.className = 'art-tool-icon';
+  icon.style.backgroundImage = `url(${icons[Math.floor(Math.random() * icons.length)]})`;
+  icon.style.left = (Math.random() * 100) + 'vw';
+  icon.style.top = (Math.random() * 100) + 'vh';
+  const size = 36 + Math.random() * 24;
+  icon.style.width = size + 'px';
+  icon.style.height = size + 'px';
+  const duration = 20 + Math.random() * 20;
+  const delay = -(duration * Math.random());
+  icon.style.animationName = 'floatRotate';
+  icon.style.animationDuration = duration + 's';
+  icon.style.animationDelay = delay + 's';
+
+  artToolsWrapper.appendChild(icon);
+
+  icon.addEventListener('animationiteration', () => {
+    icon.style.left = (Math.random() * 100) + 'vw';
+    icon.style.top = (Math.random() * 100) + 'vh';
+    icon.style.animationDuration = (20 + Math.random() * 20) + 's';
+    icon.style.animationDelay = '0s';
+  });
+
+  return icon;
+}
+
+for (let i = 0; i < NUM_ICONS; i++) {
+  createArtToolIcon();
+}
+
+// ======== Данные иллюстраций для каждого раздела ========
+const illustrationsData = {
+  page1: [
+    { img: "46.jpg.jpg", alt: "Иллюстрация 1-1", author: "Алабужева Лариса", description: "«…Обрыв, на котором стояли Романов, Путивцев и Хоменко, круто уходил вниз, заросли пахучего паслена кустились на его неровностях. Местами склон был обнажен осыпями. Дно балки тоже заросло пасленом. Другой склон был пологим. Густая, высокая, местами пожухлая трава покрывала его…»" },
+    { img: "47.jpg.jpg", alt: "Иллюстрация 1-2", author: "Борисова", description: "«…Рябышев быстро оделся и вышел на улицу. Городок еще безмятежно спал. На траве лежала утренняя роса — день обещал быть солнечным, ясным. У штаба часовые взяли на караул. Дежурный по штабу вскочил, хотел рапортовать, генерал остановил его, поднял телефонную трубку и услышал голос начальника оперативного отдела штаба армии…»" },
+    { img: "48.jpg.jpg", alt: "Иллюстрация 1-3", author: "Буздыханова Виктория", description: "«…Никогда еще Дрогобыч не слышал такого шума, грохота, гула. Ревели танковые моторы, лязгали гусеницы о брусчатку мостовых, катила, громыхая, по улицам артиллерия на тягачах. Через город шли войска, дислоцирующиеся в районе Дрогобыча и Стрыя…»" },
+    { img: "49.jpg.jpg", alt: "Иллюстрация 1-4", author: "Галицкая Людмила", description: "«…Маслянисто поблескивала вода. Тихий шелест волн нарушал ночную немоту, скрадывал звук человеческих шагов…» Стало уже совсем темно. Ночь густела. На востоке вспыхнул багровый всполох, осветил все вокруг: и чернильно-блестящую воду, и матово-темные стены камышей, и низкое темно-пепельное небо…»" },
+    { img: "50.jpg.jpg", alt: "Иллюстрация 1-5", author: "Галицкая Людмила", description: "«…В августе Азовское море начинало цвести. Светло-зеленая вода густела, будто в нее засыпали мелкую крупу. В тихую погоду на поверхности лежали длинные зеленые косы водорослей. В облачные, ветреные дни, как сегодня, они змеились в пепельно-серой от ила воде и казались синими…»" },
+    { img: "51.jpg.jpg", alt: "Иллюстрация 1-6", author: "Гукова Елизавета", description: "«…И тут из-за бугра выскочили три пары. Бежали не понарошку, а вовсю девки, задрав подолы юбок, мелькая белизной ног, парни не отставали от них. В одном из парней Михаил разглядел Степана Заерко. — Степка! Что случилось? — Привидение!.. С кладбища!.. Тикайте!.. — Стой! Стрелять буду! — уже со злостью и угрозой, тоном ниже, громко сказал Клим и вытащил маузер…» …Романов выстрелил вверх, шагнул, зацепился деревяшкой за кочку, споткнулся, и по ушам Михаила ударил второй выстрел…" },
+    { img: "52.jpg.jpg", alt: "Иллюстрация 1-7", author: "Енгалычев Али", description: "Около Пятихаток машину Ананьина обстреляли немецкие танки. Поднимая черные земляные фонтаны, снаряды рвались рядом со шляхом. — Скорее в балку! — крикнул Ананьин шоферу. Машину резко качнуло на выбоине. Ананьин больно ударился об угол и матерно выругался. Снаряд разорвался совсем близко, и по фургону забарабанили комья сухой земли. Ананьин вцепился руками в дверцу и втянул голову в плечи…»" },
+    { img: "53.jpg.jpg", alt: "Иллюстрация 1-8", author: "Макаренко", description: "" },
+    { img: "54.jpg.jpg", alt: "Иллюстрация 1-9", author: "Нольде Виктория", description: "Владимир Михайлович вспомнил Азовское море... Перед самым отъездом в Берлин он был на взморье. Стоял теплый октябрьский погожий день. Вода, однако, уже дышала не летней прохладой. Сначала они шли по основному руслу, потом начались гирла Дона: протоки, заросшие камышом -- зеленым и желтым, хрупким, перестоявшим. Неожиданно перед носом катера простор как бы расступился, вышли в открытое море. И до того все это вдруг ощутимо представил, вспомнил, увидел Путивцев, будто в мгновение ока перенесся за тысячи километров из Берлина домой…»" },
+    { img: "55.jpg.jpg", alt: "Иллюстрация 1-10", author: "Шуляков Антон", description: "«… Он установил прицел. Пулемет надолго затрясся в его крупных руках. Немецкие пулеметчики на открытой набережной не выдержали огня, попятились к домам. Из соседней амбразуры, которую занял Чибисов, раздались звонкие винтовочные выстрелы. Один из пулеметчиков-немцев упал…»" }
+  ],
+  page2: [
+    { img: "4.jpg.jpg", alt: "Иллюстрация 2-1",  author: "Баркова Наталья",description: "«Среди бегущих обершарфюрер увидел женщину в кожаном пальто с леопардовым воротником. Она выделялась среди просто одетых женщин, на нее нельзя было обратить внимание… Женщина вдруг остановилась. То ли она поняла, что ей не убежать, то ли у нее уже не было сил. До нее оставалось каких-нибудь десять метров…»" },
+    { img: "5.jpg.jpg", alt: "Иллюстрация 2-2",  author: "Барлит Дарья",description: "Описание иллюстрации 2-2" },
+    { img: "6.jpg.jpg", alt: "Иллюстрация 2-3",  author: "Бондаренко Лариса",description: "«И вот впервые после того, как Астрид увидела первого немца, она вышла одна, без сопровождавших, на улицу. Идти сразу в хозяйственный отдел не хотелось. Кроме того, Ларсон решила проверить: действительно ли она свободна? Не будет ли идти за ней соглядатай?..»" },
+    { img: "7.jpg.jpg", alt: "Иллюстрация 2-4",  author: "Буданова Елизавета",description: "«Боже, как страшно! Ей было страшно, когда за ней пополю гналось железное чудовище. Оно настигло ее, злобно дышало нагретым железом в затылок. Еще немного, и она упадет под гусеницы танка. Бежать дальше не было сил. Она остановилась. Как завороженная смотрела на движущийся на нее танк. В мгновение ока в сознании промелькнули лица Оленьки, Павла, мамы… «Убьют или раздавят?!»" },
+    { img: "8.jpg.jpg", alt: "Иллюстрация 2-5",  author: "Иванченко Дмитрий",description: "«- В районе Таганрог – Ва-ре-нов-ка, - по слогам произнес незнакомое название русского села штурмбанфюрер – наши танки завязали бой с русским бронепоездом. Приказываю вам выйти к железнодорожному полотну и разрушить его…»" },
+    { img: "9.jpg.jpg", alt: "Иллюстрация 2-6",  author: "Кроповницкая Дарья",description: "«У самого Таганрога, возле Блочка, где железная дорога петлей подходила к окраине, Астрид увидела разбитый русский бронепоезд. Неподалеку от него стояли подбитые немецкие танки – один со свернутой башней, другой – с развороченным бортом, третий с обгоревшей краской и пробоиной в боку…»" },
+    { img: "10.jpg.jpg", alt: "Иллюстрация 2-7", author: "Романченко Анна" ,description: "Описание иллюстрации 2-7" },
+    { img: "11.jpg.jpg", alt: "Иллюстрация 2-8",  author: "Тертышная Татьяна",description: "Описание иллюстрации 2-8" },
+    { img: "12.jpg.jpg", alt: "Иллюстрация 2-9", author: "Шайхиева Надежда", description: "«Вскоре после того, как Ларсон явилась на службу, в ее комнату вошел майор Нейман и сказал, чтобы она немедленно начала упаковывать документы…»" },
+    
+  ],
+  page3: [
+    { img: "1.jpg.jpg", alt: "Иллюстрация 3-1", author: "Ворошнин Николай", description: "«…Они остались у камышей, а я пошел дальше. Старался шагать осторожно, тихо. На мне были валенки с галошами. Под ногами тихо похрустывало. Но мне казалось, что этот хруст разносился по всей округе. Особенно трудными, напряженными были первые сотни шагов…  " },
+    { img: "2.jpg.jpg", alt: "Иллюстрация 3-2", author: "Гостев Артём", description: "«…Я шел уже третий час. Усталость начала постепенно вытеснять чувства и мысли. Ноги болели. Я мог часами гонять футбольный мяч по Степку, но одно дело гонять в футбол, другое – идти по льду…»" },
+    { img: "3.jpg.jpg", alt: "Иллюстрация 3-3", author: "Кувыкин Кирилл", description: "«…Внезапно вспыхнувший свет заставил меня вздрогнуть. Прожектор! Хотя я давно ждал этого, а все-таки что-то внутри екнуло. Я повалился на лед. И застыл. Щека моя прижалась к холодному, влажному. Но я боялся шевельнуться, обнаружить себя…»" }
+    
+  ],
+  page4: [
+    { img: "13.jpg.jpg", author: "Буртелёв Юрий", alt: "Иллюстрация 4-1", description: "" },
+    { img: "14.jpg.jpg", author: "Таратута Василий", alt: "Иллюстрация 4-2", description: "" },
+  ],
+  page5: [
+    { img: "15.jpg.jpg", alt: "Иллюстрация 5-1", author: "Андреева Таиса", description: "«… Зворыкин потянулся к пулемету, приказал пулеметчику: - А ну-ка, подвинься! - Хочешь, вон ту ветку на сосне сшибу? – спросил он комбата. – На спор, хочешь? – упорствовал Зворыкин. - Оставь! «Это не игра», —твердо сказал Головняк. Но Зворыкин будто не слышал, повернул пулемет, припал к нему, мягко нажал гашетку. Короткая очередь басовито забилась в звенящем воздухе – ветку срезало, как ножом…»" },
+    
+  ],
+  page6: [
+    { img: "16.jpg.jpg", alt: "Иллюстрация 6-1", author: "Алексеева Светлана", description: "" },
+    { img: "17.jpg.jpg", alt: "Иллюстрация 6-2", author: "Головко Полина", description: "" },
+    { img: "18.jpg.jpg", alt: "Иллюстрация 6-3", author: "Горбатенко Алексей", description: "" },
+    { img: "19.jpg.jpg", alt: "Иллюстрация 6-4", author: "Дергачева Варвара", description: "" },
+    { img: "20.jpg.jpg", alt: "Иллюстрация 6-5", author: "Ершова Валерия", description: "«Взгляд его скользнул по дороге, по рощице: «Неужели березы?» Белые, тонкие, еще не окрепшие стволы, казалось, зябли в этой утренней сырой хмари. Вчера, в сумерках, лейтенант не разглядел рощу как следует – деревья и деревья. «Вот куда вы забрались», - шагая по дороге, с нежностью подумал Николай…»" },
+    { img: "21.jpg.jpg", alt: "Иллюстрация 6-6", author: "Ибатова Алсу", description: "" },
+    { img: "22.jpg.jpg", alt: "Иллюстрация 6-7", author: "Колесникова Мария", description: "" },
+    { img: "23.jpg.jpg", alt: "Иллюстрация 6-8", author: "Лесникова Софья", description: "" },
+    { img: "24.jpg.jpg", alt: "Иллюстрация 6-9", author: "Синицына Алина", description: "" },
+    { img: "25.jpg.jpg", alt: "Иллюстрация 6-10", author: "Смирнова Юлиана", description: "" },
+    { img: "26.jpg.jpg", alt: "Иллюстрация 6-10", author: "Соколова Александра", description: "«Дом стоял на развилке дорог. Он как перст, торчал рядом с низкорослой рощицей, посеченной осколками. Верхние этажи его были разрушены, стропила обуглены, и в них подвывал мокрый апрельский ветер…»" },
+    { img: "27.jpg.jpg", alt: "Иллюстрация 6-10", author: "Сычева Алина", description: "" },
+    { img: "28.jpg.jpg", alt: "Иллюстрация 6-10", author: "Сычева Алина", description: "" },
+    { img: "29.jpg.jpg", alt: "Иллюстрация 6-10", author: "Чернякова Елизавета", description: "" }
+  ],
+  page7: [
+    { img: "30.jpg.jpg", alt: "Иллюстрация 7-1", author: "Алиева Рутия", description: "" },
+    { img: "31.jpg.jpg", alt: "Иллюстрация 7-2", author: "Бондурова София", description: "" },
+    { img: "32.jpg.jpg", alt: "Иллюстрация 7-3", author: "Горянова Яна", description: "" },
+    { img: "33.jpg.jpg", alt: "Иллюстрация 7-4", author: "Захарченко", description: "" },
+    { img: "34.jpg.jpg", alt: "Иллюстрация 7-5", author: "Захарченко", description: "" },
+    { img: "35.jpg.jpg", alt: "Иллюстрация 7-6", author: "Захарченко", description: "" },
+    { img: "36.jpg.jpg", alt: "Иллюстрация 7-7", author: "Куличков Тимофей", description: "" },
+    { img: "37.jpg.jpg", alt: "Иллюстрация 7-8", author: "Мелоян Амо", description: "" },
+    { img: "38.jpg.jpg", alt: "Иллюстрация 7-9", author: "Савченко Полина", description: "" },
+    { img: "39.jpg.jpg", alt: "Иллюстрация 7-10", author: "Тычкова Тамара", description: "" },
+    { img: "40.jpg.jpg", alt: "Иллюстрация 7-10", author: "Шевцова Кристина", description: "" }
+  ],
+  page8: [
+    { img: "41.jpg.jpg", alt: "Иллюстрация 8-1", author: "Баркова Наталья", description: "«…Поезд между тем шел по Баварии. Вечерело. За окном проплывали пронизанные солнечным светом хвойные леса, поднимающиеся на холмы и возвышенности. Чем дальше к югу, тем большей крутизны становились эти холмы — начинались предгорья Альп…»" },
+    { img: "42.jpg.jpg", alt: "Иллюстрация 8-2", author: "Зимовейскова Анастасия", description: "" },
+    { img: "43.jpg.jpg", alt: "Иллюстрация 8-3", author: "Макарова Арина", description: "Дороги были забиты отступающими войсками. То и дело на бреющем полете проносились советские штурмовики, стреляя из пушек и пулеметов. Когда самолеты улетали, солдаты выбирались из кюветов, сталкивали с шоссе разбитые, горящие машины и двигались дальше." },
+    { img: "44.jpg.jpg", alt: "Иллюстрация 8-4", author: "Мовсесян Амалия", description: "«…Вся территория завода была огорожена колючей проволокой, по которой проходил ток высокого напряжения. На «Мариине» работали несколько тысяч заключенных Бартенхауза, а также военнопленные французы и небольшая группа польских офицеров, отказавшихся перейти в цивильные. Те же из военнопленных, которые согласились перейти в цивильные, хотя и жили в лагере, но были расконвоированы, получали заработную плату и улучшенное питание. На левой стороне груди они носили металлический желтый опознавательный знак с латинской буквой «P» — поляк…»" },
+    { img: "45.jpg.jpg", alt: "Иллюстрация 8-5", author: "Тороп Даниил", description: "«…Последним оставался Отто Енихе. Год рождения 1920. Родители: отец — Гюнтер Енихе в 1917 году закончил Лейпцигский университет и стал доктором права. Был несколько лет юристом, с 1929 по 1934 год — судьей. В 1934 году вышел в отставку. В 1944 году переехал из Магдебурга в Постлау. Известен своим религиозным фанатизмом, не разделял политики фюрера, направленной на отделение церкви от государства, открыто говорил об этом. От концлагеря его спасло только заступничество Штайнгау, который в студенческие годы и позже был его другом…» «…Прошло еще полтора месяца службы. Время от времени со стороны аэродрома доносился пронзительный, совсем непохожий на шум поршневых авиационных моторов свист. Однажды Отто увидел самолет в полете, но он пронесся так стремительно, что Енихе даже не успел различить его контуры…»" }
+    
+  ]
+};
+
+function createIllustrations(pageId, illustrations) {
+  const page = document.getElementById(pageId);
+  page.innerHTML = '';
+
+  const container = document.createElement('div');
+  container.className = 'illustrations-container';
+
+  illustrations.forEach(item => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'illustration-wrapper';
+
+    const img = document.createElement('img');
+    img.src = item.img;  // Используем item.img
+    img.alt = item.alt || item.description || 'Иллюстрация';
+    img.className = 'illustration';
+    img.dataset.bigSrc = item.img; // для большого изображения
+    img.dataset.description = item.description;
+    img.tabIndex = 0;
+
+    img.addEventListener('click', () => openModal(img.dataset.bigSrc, img.dataset.description));
+    img.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(img.dataset.bigSrc, img.dataset.description);
+      }
+    });
+
+    const desc = document.createElement('div');
+    desc.className = 'illustration-desc';
+    desc.textContent = item.description || '';
+
+    const authorDiv = document.createElement('div');
+    authorDiv.className = 'illustration-author';
+    authorDiv.textContent = item.author ? `Автор: ${item.author}` : '';
+
+    wrapper.appendChild(img);
+    wrapper.appendChild(desc);
+    wrapper.appendChild(authorDiv);
+    container.appendChild(wrapper);
+  });
+
+  page.appendChild(container);
+}
+
+// ======== Работа с модальным окном ========
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modalImg');
+const modalDesc = document.getElementById('modalDesc');
+const modalCloseBtn = document.getElementById('modalClose');
+let lastActiveButton = null;
+
+function openModal(src, desc) {
+  modalImg.src = src;
+  modalImg.alt = desc;
+  modalDesc.textContent = desc;
+
+  modal.style.display = 'flex';
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+
+  modalCloseBtn.focus();
+}
+
+function closeModal() {
+  modal.style.display = 'none';
+  modalImg.src = '';
+  modalDesc.textContent = '';
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+
+  if(lastActiveButton) lastActiveButton.focus();
+}
+
+modalCloseBtn.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => {
+  if(e.target === modal) closeModal();
+});
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape' && modal.style.display === 'flex') closeModal();
+});
+
+// ======== Навигация ========
+const navButtons = document.querySelectorAll('header button');
+navButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    navButtons.forEach(b => {
+      b.classList.remove('active');
+      b.removeAttribute('aria-current');
+    });
+    button.classList.add('active');
+    button.setAttribute('aria-current', 'page');
+    lastActiveButton = button;
+
+    const targetId = button.dataset.target;
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => {
+      page.classList.remove('active', 'fade-in');
+    });
+
+    const targetPage = document.getElementById(targetId);
+    if(targetPage) {
+      targetPage.classList.add('active', 'fade-in');
+    }
+
+    if(targetId !== 'home' && illustrationsData[targetId]) {
+      createIllustrations(targetId, illustrationsData[targetId]);
+    }
+  });
+});
