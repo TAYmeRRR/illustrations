@@ -123,10 +123,10 @@ const illustrationsData = {
     { img: "22.jpg.jpg", alt: "Иллюстрация 6-7", author: "Колесникова Мария", description: "" },
     { img: "23.jpg.jpg", alt: "Иллюстрация 6-8", author: "Лесникова Софья", description: "" },
     { img: "24.jpg.jpg", alt: "Иллюстрация 6-9", author: "Синицына Алина", description: "" },
-    { img: "25.jpg.jpg", alt: "Иллюстрация 6-10", author: "Смирнова Юлиана", description: "" },
+    ,
     { img: "26.jpg.jpg", alt: "Иллюстрация 6-10", author: "Соколова Александра", description: "«Дом стоял на развилке дорог. Он как перст, торчал рядом с низкорослой рощицей, посеченной осколками. Верхние этажи его были разрушены, стропила обуглены, и в них подвывал мокрый апрельский ветер…»" },
     { img: "27.jpg.jpg", alt: "Иллюстрация 6-10", author: "Сычева Алина", description: "" },
-    { img: "28.jpg.jpg", alt: "Иллюстрация 6-10", author: "Сычева Алина", description: "" },
+   
     { img: "29.jpg.jpg", alt: "Иллюстрация 6-10", author: "Чернякова Елизавета", description: "" }
   ],
   page7: [
@@ -261,3 +261,4 @@ navButtons.forEach(button => {
     }
   });
 });
+
