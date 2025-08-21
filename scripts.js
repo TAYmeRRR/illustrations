@@ -205,6 +205,41 @@ function createIllustrations(pageId, illustrations) {
 }
 
 // ======== Работа с модальным окном ========
+const openCoverModalBtn = document.getElementById('openCoverModal');
+const coverModal = document.getElementById('coverModal');
+const coverModalCloseBtn = coverModal.querySelector('.modal-close');
+
+function openCoverModal() {
+  coverModal.style.display = 'flex';
+  coverModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  coverModalCloseBtn.focus();
+  openCoverModalBtn.setAttribute('aria-expanded', 'true');
+}
+
+function closeCoverModal() {
+  coverModal.style.display = 'none';
+  coverModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  openCoverModalBtn.setAttribute('aria-expanded', 'false');
+  openCoverModalBtn.focus();
+}
+
+openCoverModalBtn.addEventListener('click', openCoverModal);
+coverModalCloseBtn.addEventListener('click', closeCoverModal);
+
+coverModal.addEventListener('click', (e) => {
+  if(e.target === coverModal) {
+    closeCoverModal();
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && coverModal.style.display === 'flex') {
+    closeCoverModal();
+  }
+});
+
 const modal = document.getElementById('modal');
 const modalImg = document.getElementById('modalImg');
 const modalDesc = document.getElementById('modalDesc');
@@ -269,6 +304,7 @@ navButtons.forEach(button => {
     }
   });
 });
+
 
 
 
